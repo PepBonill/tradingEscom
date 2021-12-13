@@ -3,8 +3,8 @@ import math
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, LSTM
+from keras.models import Sequential
+from keras.layers import Dense, LSTM
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 

@@ -8,6 +8,10 @@ import dash_bootstrap_components as dbc
 from dashboard.dash_apps import prediccionLSTM as LSTM
 from dashboard.dash_apps import patrones
 
+from os import listdir
+from os.path import isfile, join
+import pathlib
+
 import time
 import pandas as pd
 from datetime import datetime
@@ -33,11 +37,19 @@ def obtenerDatos(ruta):
     #devuelve una matriz con los datos
     return my_data
 
-#df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv')
-df = obtenerDatos('amazonstocks.csv')
 
-available_indicators = ["NASDAQ: AAPL", "NASWRS: EGPL", "AAWEAQ: AOAL"]
-#print(available_indicators)
+mypath= str(pathlib.Path().resolve())
+#mypath = mypath[0:len(mypath)-5]
+mypath = mypath + "/media/myfolder"
+
+files = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+
+#df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv')
+df = [] 
+
+#available_indicators = ['ejemplo1', 'ejemplo2']
+available_indicators = files
+print(available_indicators)
 
 app = DjangoDash('SimpleExample', external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -168,7 +180,6 @@ app.layout = html.Div([
         ),
 ])
 
-
 #Precisión de búsqueda de patrones
 @app.callback(
     Output('slider-output-container', 'children'),
@@ -238,6 +249,11 @@ def toggle_modal(n1, n2, is_open):
 
 def display_graphs(graph_type, graph_title):
     
+    df = obtenerDatos(graph_title)
+
+    if(df.empty):
+        return
+
     fig = go.Figure()
     data = df.copy(deep=True)
 
