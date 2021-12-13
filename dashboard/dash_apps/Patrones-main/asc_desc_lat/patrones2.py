@@ -1,8 +1,8 @@
 from matplotlib.pylab import gca, figure, plot, subplot, title, xlabel, ylabel, xlim, show, ylim
 from matplotlib.lines import Line2D
-from dashboard.dash_apps import segmento
-from dashboard.dash_apps import crear
-from dashboard.dash_apps import extraer
+import segmento
+import crear
+import extraer
 import pandas as pd                    #Almacenamiento y análisis de datos 
 import numpy as np
 import joblib
@@ -17,9 +17,9 @@ def obtenerDatos(ruta):
         return -1
     
     #Convierte fecha en marca de tiempo
-    #datos.index = datos["Date"].apply(lambda x: pd.Timestamp(x))
+    datos.index = datos["Date"].apply(lambda x: pd.Timestamp(x))
     #Remplaza la marca de tiempo como los indices de la matriz
-    #datos.drop("Date", axis=1, inplace=True)
+    datos.drop("Date", axis=1, inplace=True)
     
     #print(datos)
     
@@ -48,11 +48,10 @@ def draw_segments(segmentos):
         line = Line2D((segment[0],segment[2]),(segment[1],segment[3]))
         ax.add_line(line)
 
-def buscaPatrones(datos, error_max, listaPatrones):
+def buscaPatrones(datos, error):
   lista = []
 
-  print(listaPatrones)
-  #error_max = 1
+  error_max = error
   desde = 0
   hasta = len(datos['Close'])
 
@@ -78,22 +77,11 @@ def buscaPatrones(datos, error_max, listaPatrones):
   precio_cierre = datos2.tolist()
   
   import pathlib
-  #print(pathlib.Path().resolve())
-  
+  print("ooooooooooooooooooooooooooooooooooooooooooooooo")
+  print(pathlib.Path().resolve())
+  print("ooooooooooooooooooooooooooooooooooooooooooooooo")
 
-  buscaAscendente = False
-  buscaDescendente = False
-  buscaLateral = False
-  #Busca en la lista de parametros los patrones a buscar     
-  for ptrn in listaPatrones:
-      if ptrn == 'tdescendente':
-          buscaDescendente = True
-      if ptrn == 'tascendente':
-          buscaAscendente = True
-      if ptrn == 'tlateral':
-          buscaLateral = True
-
-  modelo = joblib.load('dashboard/dash_apps/asc_desc_lat1.pkl')
+  modelo = joblib.load('asc_desc_lat1.pkl')
 
   for c in range(len(caracteristicas)):
     entradas = caracteristicas[c]
@@ -128,23 +116,9 @@ def buscaPatrones(datos, error_max, listaPatrones):
       #draw_segments(segmentos[c:c+7])
       #show()
 
-      #Obtiene el patron encontrado
       patronresultado = [clase, segmentos[c:c+7]]
+      lista.append(patronresultado)
 
-      #Si coincide con los que se van buscar, lo agrega a la lista
-      if((patronresultado[0] == 0) and buscaAscendente): 
-          lista.append(patronresultado)
-          #print("es descendente")
-      if((patronresultado[0] == 1) and buscaDescendente): 
-          lista.append(patronresultado)
-          #print("es ascendente")
-      if((patronresultado[0] == 2) and buscaLateral): 
-          lista.append(patronresultado)
-          #print("es ascendente")
-      if(patronresultado[0] == 3):
-          #lista.append(patronresultado)
-          print("complemento")
-        
   return lista
 
 '''
@@ -159,14 +133,46 @@ print(aux.index)
 draw_plot_gral(aux, "Bottom-up e interpolacion")
 draw_segments(segmentos)
 show()
-
-
-ruta = 'amazonstocks.csv'
-aux = buscaPatrones(obtenerDatos(ruta))
-
-for i in range(0,len(aux)):
-  print(aux[i])
-  print("\n")
-
 '''
 
+import plotly.graph_objects as go
+
+import pandas as pd
+#df = pd.read_csv('amazonstocks.csv')
+
+ruta = 'amazonstocks.csv'
+data = obtenerDatos(ruta)
+#fig = go.Figure([go.Scatter(x=data.index, y=data['Close'])])
+#fig.show()
+
+aux = buscaPatrones(data,1)
+
+print("\n\n\n")
+
+fig = go.Figure(go.Scatter(
+            #x=df['Date'],
+            y=data['Close']
+        ))
+
+for i in range(0,len(aux)):
+    cordenadasx = []
+    cordenadasy = []
+    segment = aux[i]
+    print(segment)
+    print("\n")
+    for value in segment[1]:
+        cordenadasx.append(value[0])
+        cordenadasy.append(value[1])
+    if(segment[0] == 0):
+        segment[0] = "Triángulo descendente"
+    if(segment[0] == 1):
+        segment[0] = "Triángulo ascendente"
+    if(segment[0] == 2):
+        segment[0] = "Triángulo lateral"
+    fig.add_trace(go.Scatter(
+                    x = cordenadasx, 
+                    y = cordenadasy,
+                    name= str(segment[0])
+                ))
+
+fig.show()
