@@ -1,0 +1,113 @@
+{% load static %}
+
+{% load plotly_dash %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href = "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel ="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'assets/css/styleDash.css' %}">
+
+    <title>Gráficas</title>
+  </head>
+  <body>
+
+    <!-- Sidebar con opciones -->
+    <div class="d-flex">
+      <div id="sidebar-container" class="bg-primary" style="width: 15%;">
+        <div class="logo">
+          <h4 class="text-light">TT 2020-B092</h4>
+        </div>
+        <div class="menu">
+          <a id="inicio" href="/inicio" onclick="muestraInicio();return false;" class="d-block text-light p-3"><i class="icon ion-md-home mr-3 lead"></i> Inicio</a>
+          <a id="graficas" href="/dash" onclick="muestraGraficas();return false;"" class="d-block text-light p-3"><i class="icon ion-md-stats mr-3 lead"></i> Gráficas</a>
+          <a id="perfil" href="/perfil" onclick="muestraPerfil();return false;"class="d-block text-light p-3"><i class="icon ion-md-person mr-3 lead" > </i> Perfil</a>
+          <a id="archivos" href="/archivos" onclick="muestraArchivos();return false;" class="d-block text-light p-3"><i class="icon ion-md-folder mr-3 lead"></i> Archivos</a>
+          <a id="acercade" href="/acercade" onclick="muestraAcercade();return false;" class="d-block text-light p-3"><i class="icon ion-md-information mr-3 lead"></i> Documentación</a> 
+        </div>
+      </div>
+
+      <div class="w-100">
+        <!-- Navbar para mostrar usuario -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-grey " style="height: 4%">
+          <div class="container-fluid bg-grey">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <p class="navbar-brand mb-1 mb-lg-0 col-lg-10">Laboratorio de pruebas</p>
+              <ul class="navbar-nav ml-auto mb-1 mb-lg-0 col-lg-2">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="{% static 'assets\img\user.png' %}" class="img-fluid rounded-circle avatar mr-2">
+                      {{user.username}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                    </ul>
+                  </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        
+        <!--Subir archivo
+        <form action="../../form-result.php" method="post" enctype="multipart/form-data" target="_blank">
+          <p class="p-2">
+            Subir archivo:
+            <input type="file" name="archivosubido">
+            <input type="submit" value="Enviar datos">
+          </p>
+        </form>
+        -->
+
+        <!-- Sección principal -->
+        <div id="graficasSection" class="{% plotly_class name='SimpleExample' %} overflow-auto card" style="height: 50%; width: 100%">
+            {% plotly_app name='SimpleExample' ratio=1 %}
+        </div>
+
+        </div>        
+
+      </div>
+    </div>
+
+
+    <script>
+      function muestraInicio() {
+        document.getElementById("inicioSection").style.display = "none";
+        document.getElementById("graficaSection").style.display = "none";
+      }
+      function muestraGraficas() {
+        document.getElementById("mainSection").innerHTML = document.getElementById("graficasSection").innerHTML;
+      }
+      function muestraPerfil() {
+        document.getElementById("mainSection").innerHTML = document.getElementById("perfilSection").innerHTML;
+      }
+      function muestraArchivos() {
+        document.getElementById("mainSection").innerHTML = document.getElementById("archivosSection").innerHTML;
+      }
+      function muestraAcercade() {
+        document.getElementById("mainSection").innerHTML = document.getElementById("acercadeSection").innerHTML;
+      }
+      </script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
