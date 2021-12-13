@@ -15,7 +15,6 @@ import os
 
 from django.urls.base import reverse_lazy
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,16 +26,12 @@ STATICFILES_DIRS = (
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-q=)l63#8spo8xnua%7y%imj-zaqmmg2t%i3lw513sw15a(0e_('
-from django.core.management.utils import get_random_secret_key
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
+SECRET_KEY = 'django-insecure-q=)l63#8spo8xnua%7y%imj-zaqmmg2t%i3lw513sw15a(0e_('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = True
 
-#ALLOWED_HOSTS = []
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = ['tradingescom.herokuapp.com', 'localhost']
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
@@ -49,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap4',
     'appbienvenida',
     'django_plotly_dash.apps.DjangoPlotlyDashConfig',
     'channels',
@@ -56,6 +52,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -91,23 +88,16 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-import sys
-import dj_database_url
 
-DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
-
-if DEVELOPMENT_MODE is True:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'srpgmdDB',
+            'USERNAME': 'admin',
+            'PASSWORD': 'passadmin',
+            'HOST': 'localhost',
+            'PORT': '3307',
         }
-    }
-elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
-    if os.getenv("DATABASE_URL", None) is None:
-        raise Exception("DATABASE_URL environment variable not defined")
-    DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
     }
 
 
@@ -175,14 +165,20 @@ PLOTLY_COMPONENTS = [
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATICFILES_LOCATION = 'static'
-STATIC_URL = 'static/'
-STATIC_ROOT = 'staticfiles'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
+STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra lookup directories for collectstatic to find static files
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
+#  Add configuration for static files storage using whitenoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #Media files
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -191,3 +187,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = reverse_lazy("dash")
 LOGOUT_REDIRECT_URL = reverse_lazy("login")
+
+import dj_database_url 
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
