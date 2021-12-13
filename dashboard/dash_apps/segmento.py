@@ -1,5 +1,5 @@
 from dashboard.dash_apps import crear
-import costo
+from dashboard.dash_apps import costo
 
 def bottomup(datos, error_max):
 	# Crear segmentos iniciales

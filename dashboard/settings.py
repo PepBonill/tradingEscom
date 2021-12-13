@@ -176,7 +176,7 @@ PLOTLY_COMPONENTS = [
 
 STATICFILES_LOCATION = 'static'
 STATIC_URL = 'static/'
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = 'static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
