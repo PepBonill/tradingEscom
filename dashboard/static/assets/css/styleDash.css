@@ -1,0 +1,43 @@
+/*
+Dashboard
+*/
+:root {
+    --primary: #586cdd;
+    --light: #ffffff;
+    --grey: #efefef;
+  }
+  
+  body {
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 250;
+    color: var(--primary);
+  }
+  
+  a:link {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+  
+  .bg-primary {
+    background-color: var(--primary) !important;
+  }
+  
+  #sidebar-container {
+    min-height: 100vh;
+  }
+  
+  #sidebar-container .logo {
+    padding: 1rem 1rem;
+  }
+  
+  #sidebar-container .menu {
+    width: 20rem;
+  }
+  
+  .avatar {
+    max-width: 35px;
+  }

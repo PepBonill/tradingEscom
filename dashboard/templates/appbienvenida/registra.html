@@ -1,0 +1,101 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Trabajo Terminal</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    <!-- Estiilos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="stylesheet" href="{% static 'assets/css/styles-login.css' %}">
+    <link rel="icon" href="{% static 'assets/img/logo.png' %}">
+</head>
+<body>
+
+
+    <!-- Navegacion menu -->
+    <header id="header">
+        <nav class="menu">
+            <div class="logo-box">
+                <h1><a href="#">Trading ESCOM</a></h1>
+                <span class="btn-menu"><i class="fas fa-bars"></i></span>
+            </div>
+
+            <div class="list-container">
+                <ul class="lists">
+                    <li><a href="{% url 'index' %}">Inicio</a></li>
+                        <li><a href="/tutorial">Tutorial</a></li>
+                        <li><a href="/conocermas">Conocer más</a></li>
+                        <li><a href="/login">Iniciar Sesión</a></li>
+                        <li><a href="/register" class="activo">Registrarse</a></li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <main>
+        
+            <div class="contenedor-todo">
+                <div class="trasera">
+                    <div class="trasera-login">
+                        <h3>¿Ya tienes una cuenta?</h3>
+                        <p>Inicia sesión para entrar en la página</p>
+                        <a href="\login"><button id="btn-iniciar-sesion">Iniciar Sesión</button></a>
+                    </div>
+                    <div class="trasera-register">
+                        {% if messages %}
+                            {% for message in messages %}
+                            <div class = "trasera">
+                            {{ message }}
+                            </div>
+                            {% endfor %}    
+                        {% endif %}
+                        <h3>¿Aún no tienes una cuenta?</h3>
+                        <p>Regístrate para que puedas iniciar sesión</p>
+                        <button id="btn-registrarse">Regístrarse</button>
+                    </div>
+                </div>
+
+                <!--Formulario de Login y registro-->
+                <div class="contenedor-login-register">
+                    <!--Login-->
+                    <form action="" class="formulario-login"  method="post">
+                        {% csrf_token %}
+                        <h2>Iniciar Sesión</h2>
+                        <input type="text" placeholder="Correo Electronico" name="username">
+                        <input type="password" placeholder="Contraseña" name="password">
+                        <button type="submit">Entrar</button>
+                    </form>
+
+                    <!--Register-->
+                   <form class="formulario-register" method="post">
+                        {% csrf_token %}
+                        <h2>Regístrarse</h2>
+                       <!--  
+                        <input type="text" placeholder="Nombre de usuario" name="username">
+                        <input type="text" placeholder="Nombre" name="first_name">
+                        <input type="text" placeholder="Apellidos" name="last_name">
+                        <input type="text" placeholder="Correo Electronico" name="email">
+                        <input type="password" placeholder="Contraseña" name="password1">
+                        <input type="password" placeholder="Confirmar contraseña" name="password2">
+                   -->
+                        {{ form.as_p}}
+                        <button type="submit">Regístrarse</button>
+                    </form>
+                </div>
+            
+            </div>
+
+        </main>
+
+
+        <script src="https://kit.fontawesome.com/35db202371.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{% static 'assets/js/registra.js' %}"></script>
+</body>
+</html>

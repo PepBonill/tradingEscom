@@ -1,0 +1,124 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajo terminal</title>
+
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="{% static 'assets/css/styles-conocemas.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="icon" href="{% static 'assets/img/logo.png' %}">
+
+</head>
+<body>
+
+      <!-- Navegacion menu -->
+      <header id="header">
+        <nav class="menu">
+            <div class="logo-box">
+                <h1><a href="#">Trading ESCOM</a></h1>
+                <span class="btn-menu"><i class="fas fa-bars"></i></span>
+            </div>
+
+            <div class="list-container">
+                <ul class="lists">
+                    <li><a href="{% url 'index' %}">Inicio</a></li>
+                    <li><a href="/tutorial">Tutorial</a></li>
+                    <li><a href="/conocermas" class="activo">Conocer más</a></li>
+                    <li><a href="/login">Iniciar Sesión</a></li>
+                    <li><a href="/register">Registrarse</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- img header -->
+        <div class="img-header">
+            <div class="welcome">
+                <h1>Conoce más sobre el tema</h1>
+                <hr>
+                <p>Sistema reconocimiento de patrones</p>
+                <button id="abajo">Ver abajo</button>
+            </div>
+        </div>
+
+        <div class="skew-abajo"></div>
+
+    </header>
+
+    <!-- Fin cabecera -->
+
+
+<main>
+
+    <!-- Acerca de -->
+    <section class="acerca-de">
+        <div class="info-container">
+            <h1>¿Qué es el mercado de divisas?</h1>
+            <p>El mercado de divisas o mercado cambiario es un mercado que se caracteriza por el libre cambio de divisas, es decir, su objetivo principal es el de facilitar el comercio internacional y la inversión. También se conoce como FOREX (Foreign Exchange, que se traduce como intercambio de monedas extranjeras).</p>
+
+            <h1>Instrumentos más comunes en el mercado de divisas</h1>
+            <p>
+
+                <b>Operaciones al contado de divisas:</b> Son compra-venta de divisas en las que el tiempo que transcurre no supera más de dos días hábiles.
+                <br>
+                <b>Operaciones a plazo de divisas:</b> Son operaciones de compraventa de divisas en las que la cantidad y el precio de las divisas se fijan en el momento de la contratación pero la entrega de las mismas se realiza en un momento fijado en el contrato. Las operaciones a plazo representan el 70% del total de las operaciones realizadas.
+                <br>
+                <b> financieros:</b> Existen 5 dentro de derivados:
+                <br>
+                <b> 1.- Opción financiera de divisas (foreign Exchange options):</b> Contrato que da el derecho (no la obligación) a intercambiar una divisa por otra a una tasa determinada en una fecha concreta.
+                <br>
+                <b> 2.- Futuros de divisas (foreign Exchange futures):</b> es un intercambio de divisas en una fecha determinada bajo una tasa ya acordada.
+                <br>
+                <b> 3.- Contrato no negociado de divisas (non deliverable fowards):</b> un contrato generalmente negociado transterritorialmente, que se liquida tras la base de distintas monedas.
+                <br>
+                <b> 4.- Futuros a plazo (outright forward):</b> Es un intercambio de una divisa por otra a la tasa de un día futuro predeterminado.
+                <br>
+                <b> 5.- Swap de divisas (foreign Exchange swaps):</b> Es un contrato que se caracteriza por la peculiaridad de comprar y vender una cantidad de divisas, y de revender y recomprar las divisas a una tasa determinada en una fecha concreta.
+                <br>
+            </p>
+
+            <h1>Factores por los que los tipos de cambio pueden variar</h1>
+            <p>
+                <b>Económicos:</b> Inflación (también inflación subyacente), déficit público, PIB, desempleo, IPC, etc.
+                <br>
+                <b>Políticos:</b> Política monetaria de un país.
+                <br>
+                <b>Psicológicos:</b> Debido a los rumores. Este último parece tener una menor importancia pero no es así. Por ejemplo: el 23/04/2013 un rumor de atentado en la casa blanca vía twitter hizo tambalear la bolsa de Wall Street durante algunos minutos y los índices llegaron a caer más de un 1%.
+            </p>
+
+            <h1>Características del mercado de divisas</h1>
+            <p>
+                <b>Gran escala:</b> Se reporta un gran número de operaciones de intercambio de monedas alrededor del mundo, configurándose el que es considerado el mayor mercado financiero.
+                <br>
+                <b>Variedad:</b> Participan muchos tipos de actores, desde entidades internacionales hasta personas naturales que se acercan a una casa de cambio. Asimismo, se ofrece una alta gama de activos financieros: Forwards, opciones, entre otros.
+                <br>
+                <b>Agilidad:</b> Es fácil comunicar al demandante con el oferente. Las transacciones pueden realizarse por diversos medios como la ventanilla del banco o a través de una computadora.
+                <br>
+                <b>Utilidad:</b> Permite satisfacer la necesidad de los agentes por una moneda en particular. Esto es importante, por ejemplo, si las partes que han cerrado un contrato no se encuentran en el mismo país. En ese caso, normalmente el comprador deberá adquirir divisa extranjera.
+            </p>
+
+            <div class="about-gallery">
+                <img src="{% static 'assets/img/conocemas1.jpg' %}" alt="">
+                <img src="{% static 'assets/img/conocemas2.jpg' %}" alt="">
+            </div>
+
+            
+        
+        </div>
+    </section>
+
+    <!-- acerca de nosotros-->
+
+
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/35db202371.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+
+    
+</body>
+</html>

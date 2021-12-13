@@ -1,0 +1,217 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Trabajo Terminal</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="{% static 'assets/css/stylesIndex.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="icon" href="{% static 'assets/img/logo.png' %}">
+
+</head>
+<body>
+
+    <!-- Ir arriba -->
+    <div class="go-top">
+        <span class="fas fa-angle-up"></span>
+    </div>
+
+
+        <!-- Navegacion menu -->
+        <header id="header">
+            <nav class="menu">
+                <div class="logo-box">
+                    <h1><a href="#">Trading ESCOM</a></h1>
+                    <span class="btn-menu"><i class="fas fa-bars"></i></span>
+                </div>
+
+                <div class="list-container">
+                    <ul class="lists">
+                        <li><a href="{% url 'index' %}" class="activo">Inicio</a></li>
+                        <li><a href="/tutorial">Tutorial</a></li>
+                        <li><a href="/conocermas">Conocer más</a></li>
+                        <li><a href="/login">Iniciar Sesión</a></li>
+                        <li><a href="/register">Registrarse</a></li>
+                        
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- img header -->
+            <div class="img-header">
+                <div class="welcome">
+                    <h1>Trading ESCOM</h1>
+                    <hr>
+                    <p>Sistema reconocimiento de patrones</p>
+                    <button id="abajo">Ver abajo</button>
+                </div>
+            </div>
+
+            <div class="skew-abajo"></div>
+
+        </header>
+
+        <!-- Fin cabecera -->
+
+
+    <main>
+
+        <!-- Acerca de -->
+        <section class="acerca-de">
+            <div class="info-container">
+                <h1>Acerca de nosotros</h1>
+                
+                <p>Somos una plataforma que ayudamos a tener una mejor decisión al momento de comprar o vender un activo.</p>
+                <p>Esto con el fin de obtener un mejor resultado al operar en el mercado de las acciones, divisas y cualquier otro activo independientemente de la plataforma (broker) que utilicen. Identificando formaciones que se presentan a lo largo del tiempo en la gráfica  debido al cambio del precio, aplicando técnicas de reconocimiento de patrones.</p>
+                
+                <div class="about-gallery">
+                    <img src="{% static 'assets/img/img1.jpeg' %}" alt="">
+                    <img src="{% static 'assets/img/img2.jpeg' %}" alt="">
+                    <img src="{% static 'assets/img/img3.jpeg' %}" alt="">
+                </div>
+
+                
+            
+            </div>
+        </section>
+
+        <!-- acerca de nosotros-->
+
+        <!-- Tipos de gráficas -->
+        <section class="tipos-graficas">
+            <div class="skew-arriba"></div>
+            <div class="deg-background"></div>
+
+            <div class="ejeZgrafica">
+                <div class="container-grafica">
+                    <div class="grafica-tittle">
+                        <h2>Tipos de gráficas</h2>
+                        <hr>
+                    </div>
+
+                    <div class="grafica-img">
+                        <img src="{% static 'assets/img/velas.png' %}" alt="">
+                        <img src="{% static 'assets/img/linea.png' %}" alt="">
+                        <img src="{% static 'assets/img/barras.png' %}" alt="">
+                        
+                    </div>
+                </div>
+            </div>
+           
+        </section>
+        <!-- Tipos de gráficas -->
+
+        <!-- Nosotros -->
+
+        <section class="nosotros">
+
+            <div class="nosotros-tittle">
+                <h2>Equipo de trabajo</h2>
+                <hr>
+            </div>
+
+            <div class="box-nosotros">
+                <div class="card-nosotros">
+                    <div class="card-img"><img src="{% static 'assets/img/Bonilla.jpeg' %}" alt=""></div>
+                    <div class="nosotros-text">
+                        <h4>José Luis Bonilla</h4>
+                        <p>Estudiante de último semestre de la Escuela Superior de Cómputo del Instituto Politécnico Nacional, amante de la inteligencia artificial.</p>
+                    </div>
+                </div>
+
+                <div class="card-nosotros">
+                    <div class="card-img"><img src="{% static 'assets/img/Aldo.jpeg' %}" alt=""></div>
+                    <div class="nosotros-text">
+                        <h4>Aldo Josué Bustamante</h4>
+                        <p>Estudiante de último semestre de la Escuela Superior de Cómputo del Instituto Politécnico Nacional, apasionado por el deep learning.</p>                        
+                    </div>
+                </div>
+
+
+                <div class="card-nosotros">
+                    <div class="card-img"><img src="{% static 'assets/img/Omar.jpeg' %}" alt=""></div>
+                    <div class="nosotros-text">
+                        <h4>Omar Frausto</h4>
+                        <p>Estudiante de último semestre de la Escuela Superior de Cómputo del Instituto Politécnico Nacional, su principal interés es el desarrollo web y el machine learning.</p>                        
+                    </div>
+                </div>
+
+
+                <div class="card-nosotros">
+                    <div class="card-img"><img src="{% static 'assets/img/people4.jpeg' %}" alt=""></div>
+                    <div class="nosotros-text">
+                        <h4>Benjamin Luna Benoso</h4>
+                        <p>Profesor de la Escuela Superior de Cómputo del Instituto Politécnico Nacional del área de programación.</p>                        
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Nosotros -->
+
+    </main>
+
+
+    <!-- Footer-->
+
+    <footer class="footer">
+        <div class="skew-arriba"></div>
+        <div class="deg-footer"></div>
+
+
+        <div class="ejeZfooter">
+            <div class="footer-content">
+                <div class="footer-tittle">
+<!--s                    <h2>Formulario de contacto</h2>
+                    <hr>
+                </div>
+
+                <div class="formulario-content">
+                    <form id="formulario">
+
+                        <label for="user">Nombre:</label>
+                        <input type="text" id="user" name="username" placeholder="Ingresa tu nombre de usuario">
+
+                        <label for="user">Correo Electronico:</label>
+                        <input type="email" id="email" name="email" placeholder="Ingresa tu email">
+
+                        <label for="message">Escribe tu mensaje:</label>
+                        <textarea name="message" id="message" ></textarea>
+
+                        <div class="send"><button>Enviar</button></div>
+
+                        <div class="mensaje-form">
+                            <p>Escribenos un mensaje</p>
+                        </div>
+
+                    </form>
+                </div>
+            -->
+
+                <div class="footer-txt">
+                    <p>&copy;Tt2 semestre Septiembre - Enero 2022</p>
+                </div>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <!--Footer-->
+        
+    
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/35db202371.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+
+
+</body>
+</html>

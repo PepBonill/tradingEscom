@@ -1,0 +1,149 @@
+{%load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajo terminal</title>
+
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="{% static 'assets/css/style-tutorial.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="{% static 'assets/img/logo.png' %}">
+
+
+
+</head>
+
+
+<body>
+
+ <!-- Ir arriba -->
+ <div class="go-top">
+    <span class="fas fa-angle-up"></span>
+</div>
+
+<!-- Navegacion menu -->
+<header id="header">
+    <nav class="menu">
+        <div class="logo-box">
+            <h1><a href="#">Trading ESCOM</a></h1>
+            <span class="btn-menu"><i class="fas fa-bars"></i></span>
+        </div>
+
+        <div class="list-container">
+            <ul class="lists">
+                <li><a href="{% url 'index' %}">Inicio</a></li>
+                <li><a href="/tutorial" class="activo">Tutorial</a></li>
+                <li><a href="/conocermas">Conocer más</a></li>
+                <li><a href="/login">Iniciar Sesión</a></li>
+                <li><a href="/register">Registrarse</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- img header -->
+    <div class="img-header">
+        <div class="welcome">
+            <h1>¿Cómo usar la plataforma?</h1>
+            <hr>
+            <p>Sistema reconocimiento de patrones</p>
+            <button id="abajo">Ver abajo</button>
+        </div>
+    </div>
+
+    <div class="skew-abajo"></div>
+
+</header>
+
+<!-- Fin cabecera -->
+
+
+<main>
+
+<!-- Acerca de -->
+<section class="acerca-de">
+    <div class="info-container">
+       <h1>Aprende a usar el sistema</h1>
+       <p>Para comenzar a utilizar las funcionalidades que brinda el sistema es necesario crear un usuario, para esto nos dirigimos al apartado de <b>Iniciar Sesión</b> y creamos un usuario.</p>
+
+        <div class="about-gallery">
+            <!-- Captura crear usuario -->
+            <img src="{% static 'assets/img/logo.png' %}" alt="">
+        </div>
+
+        <p>Una vez que tengamos nuestro usuario creado iniciaremos sesión en la misma pestaña de <b>Iniciar Sesión</b> y damos clic en <b>Entrar</b> y nos abrirá una interfaz exclusiva para hacer uso del sistema.</p>
+        
+        <div class="about-gallery">
+            <!-- Captura iniciar sesión -->
+            <img src="{% static 'assets/img/tutorial.jpg' %}" alt="">
+        </div>
+
+        <p>En la parte de la derecha aparece un menú que contiene los botones de: "Inicio", "Gráficas", "Perfil", "Archivos" y por último "Documentación".</p>
+        <br>
+        <p>En el apartado de <b>Inicio</b> nos mmuestra una breve información sobre qué trata nuestro sistema, para qué sirve y cómo funciona.</p>
+
+        <div class="about-gallery">
+            <!-- Captura Inicio -->
+            <img src="{% static 'assets/img/conocemas1.jpg' %}" alt="">
+        </div>
+
+        <p>Como siguiente apartado tenemos <b>Gráficas</b> la cual es una de las más interesantes, ya que aquí podemos <b>seleccionar</b> nuestro archivo con el cual podemos <b>buscar patrones</b> y hacer <b>predicciones</b> del mismo.</p>
+        <br>
+        <p>También podemos interactuar con nuestra gráfica seleccionando el tipo de gráfica que deseamos, así como también seleccionar una cierta parte de la gráfica para ver más a detalle el patrón, hacer zoom, alejar y descargar como archivo png nuestrá gráfica </p>
+
+        <div class="about-gallery">
+            <!-- Captura Gráficas -->
+            <img src="{% static 'assets/img/conocemas1.jpg' %}" alt="">
+        </div>
+
+        <p>En la parte de <b>Perfil</b> nos muestra nuestra información personal como nombre, apellidos, teléfono, correo electrónico y número de archivos que hemos subido.</p>
+
+        <div class="about-gallery">
+            <!-- Captura Perfil -->
+            <img src="{% static 'assets/img/conocemas1.jpg' %}" alt="">
+        </div>
+
+        <p>En la parte de <b>Archivos</b> podemos subir un archivo con el cual queremos trabajar para posteriormente <b>envíar datos.</b> También podemos editar ó eliminar los archivos que hemos subido.</p>
+
+        <div class="about-gallery">
+            <!-- Captura Archivos -->
+            <img src="{% static 'assets/img/conocemas1.jpg' %}" alt="">
+        </div>
+
+        <p>Por último tenemos el apartado de <b>Documentación</b> el cual muestra la documentación de nuestro proyecto como los repositorios Github de nuestro código fuente, nuestro protocolo de Trabajo Terminal, el manual técnico y el manual de usuario.</p>
+
+        <div class="about-gallery">
+            <!-- Captura Docuentación -->
+            <img src="{% static 'assets/img/conocemas1.jpg' %}" alt="">
+        </div>
+
+        <p>Por último para regresar a la parte de inicio del sitio damos clic en la parte superiro derecha donde dice <b>Usuario</b> y damos clic en <b>Cerrar Sesión</b> y listo, esto es todo lo escencial que debemos saber para hacer un buen uso del sitio.</p>
+
+        <div class="about-gallery">
+            <!-- Captura Cerra sesión -->
+            <img src="{% static 'assets/img/conocemas1.jpg' %}" alt="">
+        </div>
+    
+    </div>
+</section>
+
+<!-- acerca de nosotros-->
+
+
+<!-- Scripts -->
+<script src="https://kit.fontawesome.com/35db202371.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'assets/js/app.js' %}"></script>
+
+
+<!-- Scripts -->
+<script src="https://kit.fontawesome.com/35db202371.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'assets/js/app.js' %}"></script>
+    
+</body>
+</html>

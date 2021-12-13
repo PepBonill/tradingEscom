@@ -1,0 +1,164 @@
+{% load static %}
+
+{% load plotly_dash %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href = "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel ="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'assets/css/styleDash.css' %}">
+
+    <title>Gráficas</title>
+  </head>
+  <body>
+
+    <!-- Sidebar con opciones -->
+    <div class="d-flex">
+      <div id="sidebar-container" class="bg-primary" style="width: 15%;">
+        <div class="logo">
+          <h4 class="text-light">TT 2020-B092</h4>
+        </div>
+        <div class="menu">
+            <a id="inicio" href="/inicio" onclick="muestraInicio();return false;" class="d-block text-light p-3"><i class="icon ion-md-home mr-3 lead"></i> Inicio</a>
+            <a id="graficas" href="/dash" onclick="muestraGraficas();return false;" class="d-block text-light p-3"><i class="icon ion-md-stats mr-3 lead"></i> Gráficas</a>
+            <a id="perfil" href="/perfil" onclick="muestraPerfil();return false;"class="d-block text-light p-3"><i class="icon ion-md-person mr-3 lead" > </i> Perfil</a>
+            <a id="archivos" href="/archivos" onclick="muestraArchivos();return false;" class="d-block text-light p-3"><i class="icon ion-md-folder mr-3 lead"></i> Archivos</a>
+            <a id="acercade" href="/acercade" onclick="muestraAcercade();return false;" class="d-block text-light p-3"><i class="icon ion-md-information mr-3 lead"></i> Documentación</a> 
+          </div>
+        </div>
+
+        <div class="w-100">
+            <!-- Navbar para mostrar usuario -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-grey ">
+            <div class="container-fluid bg-grey">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <p class="navbar-brand mb-1 mb-lg-0 col-lg-10">Inicio</p>
+                <ul class="navbar-nav ml-auto mb-1 mb-lg-0 col-lg-2">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% static 'assets\img\user.png' %}" class="img-fluid rounded-circle avatar mr-2">
+                        {{user.username}} 
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'index' %}">Cerrar sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </nav>
+        
+        <!--Subir archivo
+        <form action="../../form-result.php" method="post" enctype="multipart/form-data" target="_blank">
+          <p class="p-2">
+            Subir archivo:
+            <input type="file" name="archivosubido">
+            <input type="submit" value="Enviar datos">
+          </p>
+        </form>
+        -->
+
+        <!-- Sección principal -->
+        <div id="inicioSection" class="overflow-auto" style="height: 45%; width: 100%">
+            <h3 style=" text-align: center; margin-left: 30px; margin-top: 25px; margin-bottom: 15px;">Sistema de reconocimiento de patrones en las gráficas del mercado de divisas.</h3>
+
+            <div style="display: auto; margin-left: 30px; margin-right: 30px;">
+              <p class="text-justify" style="color:rgb(82, 77, 77); font-size: 17px">
+                El Sistema de Reconocimiento de Patrones en las Gráficas del Mercado de Divisas es una herramienta para aquellos inversores que desean 
+                encontrar patrones chartistas de manera automática, sin importar el tamaño de los datos que se van a analizar, el sistema es capaz de encontrar 
+                los patrones. Además proporciona una sugerencia de comportamiento a futuro, todo esto para que puedas tomar una decisión a la hora de generar tu 
+                estrategía de inversión.
+              </p>
+              <img src="{% static 'assets\img\redesneuronales.jpg' %}" alt="Triángulo ascendente" style="width:100%">
+
+              <h3 style=" text-align: center; margin-left: 30px; margin-top: 25px; margin-bottom: 15px;">¿Por qué utilizarlo?.</h3>
+              <p class="text-justify" style="color:rgb(82, 77, 77); font-size: 17px">
+                Una de las técnicas más importantes y ampliamente probada para la predicción del comportamiento de un activo es el análisis chartista, que consiste 
+                en el estudio de patrones formados en la gráfica de cotizaciones bursátiles a lo largo del tiempo. La manera tradicional de aprovechar el potencial 
+                del análisis chartista es identificar manualmente dónde se forman los patrones, para lograrlo hay que tener amplio conocimiento del tema y experiencia 
+                detectando patrones, aún así esto no garantiza una correcta detección.<br>
+                El sistema realiza el reconocimiento de patrones mediante redes neuronales, lo que permite hacer distintas búsquedas y analizar grandes cantidades de 
+                datos. El objetivo de utilizar redes neuronales es aprovechar el poder computacional que ofrecen este tipo de algoritmos para realizar en menos tiempo 
+                una tarea que tradicionalmente nos llevaría más tiempo hacerla manualmente; además la exactitud de los resultados puede mejorar con entrenamientos 
+                posteriores a la red.
+              </p>
+
+              <h3 style=" text-align: center; margin-left: 30px; margin-top: 25px; margin-bottom: 15px;">¿Cómo funciona?.</h3>
+              <p class="text-justify" style="color:rgb(82, 77, 77); font-size: 17px">
+                El sistema se compone de subsistemas, el primero es el algoritmo de reconocimiento de patrones que incluye la manipulación de datos y el modelo de 
+                red neuronal que se encargará de buscar los patrones en las gráficas, el segundo es otro modelo que hará predicciones en el comportamiento de los 
+                precios.
+                Es importante mencionar que las predicciones que realiza el sistema son una sugerencia que se realiza analizando el comportamiento a lo largo del 
+                tiempo de la gráfica, por lo que no debería tomarse como un hecho que ocurrirá la predicción obtenida.<br>
+                Los patrones que pueden econtrarse con el sistema son:
+              </p>
+
+                <div class="row justify-content-center">
+                  <div class="column" style="float: left; width: 20%; padding: 5px; margin-left: 20px;">
+                    <img src="{% static 'assets\img\tascendente.png' %}" alt="Triángulo ascendente" style="width:100%">
+                    <p class="text-secondary" style="text-align: center ">Triángulo ascendente</p>
+                  </div>
+                  <div class="column" style="float: left; width: 20%; padding: 5px; margin-left: 20px;">
+                    <img src="{% static 'assets\img\tdescendente.png' %}" alt="Triángulo descendente" style="width:100%">
+                    <p class="text-secondary" style="text-align: center ">Triángulo descendente</p>
+                  </div>
+                  <div class="column" style="float: left; width: 20%; padding: 5px; margin-left: 20px;">
+                    <img src="{% static 'assets\img\tsimetrico.png' %}" alt="Triángulo simétrico" style="width:100%">
+                    <p class="text-secondary" style="text-align: center ">Triángulo lateral</p>
+                  </div>
+
+                </div>
+
+                  <h5 style="margin-top: 25px;">Triángulo ascendente:</h5>
+                  <p class="text-justify" style="color:rgb(82, 77, 77); font-size: 17px">
+                    El triángulo ascendente es uno de los patrones más populares entre los traders, incorpora una línea de resistencia horizontal y una de 
+                    soporte ascendente. Este patrón indica que los compradoresson más agresivos que los vendedores, ya que el precio va marcando mínimos más 
+                    altos (los que se van formando en la línea de soporte). También, se puede apreciar que el precio se va acercando a la resistencia conforme 
+                    avanza el tiempo, y una vez que se acerquen lo suficiente, el precio tendrá una nueva tendencia fuerte.
+                    Por lo cual sería una excelente oportunidad para abrir una operación y sacar ventaja de la situación.
+                  </p>
+
+                  <h5 style="margin-top: 25px;">Triángulo descendente:</h5>
+                  <p class="text-justify" style="color:rgb(82, 77, 77); font-size: 17px">
+                    El patrón de triángulo descendente se caracteriza por tener una resistencia con inclinación negativa y una línea de soporte horizontal, 
+                    este tipo de formaciones nos indican que los vendedores están ganando contra los compradores, ya que aunque aún existen traders que apuestan 
+                    a que el precio va a subir, son muchos más los que están apostando lo contrario. En este patron los máximos empiezan a ser menores, hasta que 
+                    llega el punto que se tocan las dos líneas, y se forma una nueva tendencia. Y de igual manera, es una buena oportunidad de entrar en operación.
+                  </p>
+
+                  <h5 style="margin-top: 25px;">Triángulo simétrico:</h5>
+                  <p class="text-justify" style="color:rgb(82, 77, 77); font-size: 17px">
+                    Este triángulo presenta una línea de soporte ascendente y una de resistencia de manera descendente, donde hasta cierto punto se puede apreciar 
+                    que se forma un triángulo isósceles, y suele indicar una continuación de la tendencia actual, por lo tanto podemos esperar al cruce de líneas 
+                    para confirmar la tendencia alcista o en su defecto bajista.
+                  </p>
+
+            </div>
+      
+        </div>    
+
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
